@@ -1,3 +1,5 @@
+use rand::Rng;
+
 pub fn variables() {
     //rust中的变量默认是不可变的
     let x = 5;
@@ -71,4 +73,75 @@ pub fn variables() {
 
 /*
 函数
+rust代码使用蛇形命名法来规法函数和变量名称的风格：只使用小写的字母进行命名，并以下划线分割单词
  */
+
+//函数参数
+//在英语技术文档中，参数变量和传入的具体参数值有自己对应的名称parameter和argument
+//在函数签名中，必须显示地声明每个参数的类型
+pub fn println_int(int: i32) {
+    println!("The value of int is {}", int)
+}
+
+//函数体中的语句和表达式
+//rust是一门基于表达式的语言，所以它将语句（statement）与表达式（expression）区别为两个不同的概念
+//语句是指那些操作但不返回值的指令 let x = 6;
+//表达式是指会进行计算并产生一个值作为结果的指令
+pub fn statement_expression() {
+    //语句没有返回值，所以不能将其赋值给另一个变量
+    //let x = (let y =6);
+    let x = 6;
+    //表达式
+    let y = {
+        let x = 3;
+        x + 1
+    };
+    println!("The value of y is {}", y)
+}
+
+//函数的返回值
+//rust中不用为返回值命名，但需要在箭头符号（->）的后面声明它的类型，在rust中函数的返回值等同于函数体最后一个表达式的值
+//也可以使用return关键字并指定一个值来提前从函数中返回
+pub fn sum(a: i32, b: i32) -> i32 {
+    //a + b; 如果加上分号，那么表达式就会变成语句导致编译错误
+    a + b
+}
+
+//控制流
+pub fn control_flow() {
+    //if表达式
+    let intput = 5;
+    let result = if intput < 6 {
+        intput + 1
+    } else {
+        intput - 1
+    };
+    println!("The value of the result is {}", result);
+
+    //循环
+    //rust提供了三种循环：loop，while，for
+    let mut count = 0;
+    loop {
+        count += 1;
+        if count > 100 {
+            break;
+        }
+    }
+    println!("The value of count is {}", count);
+
+    while count != 200 {
+        count += 1;
+    }
+    println!("The value of count is {}", count);
+
+    let array = [rand::thread_rng().gen_range(1..100); 5];
+    let mut index = 0;
+    while index < array.len() {
+        println!("The value of the index {} in array is {}.", index, array[index]);
+        index += 1;
+    }
+
+    for element in array.iter() {
+        println!("The value of the array is {}.", element);
+    }
+}
