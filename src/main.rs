@@ -3,11 +3,13 @@ use crate::basic::{control_flow, println_int, statement_expression, sum, variabl
 use crate::guessing_game::guessing_number;
 use crate::ownership::variables_scope;
 use crate::references_borrowing::references_borrowing;
+use crate::slice_type::slice_type;
 
 mod guessing_game;
 mod basic;
 mod ownership;
 mod references_borrowing;
+mod slice_type;
 
 fn main() {
     //guessing_number();
@@ -20,4 +22,5 @@ fn main() {
 
     variables_scope();
     references_borrowing();
+    slice_type();
 }
