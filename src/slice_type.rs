@@ -8,6 +8,7 @@ pub fn slice_type() {
     let index = first_word(&str);
     println!("{}", index);
 
+    //字节位置不是字符位置
     let hello = &str[0..5];
     let word = &str[6..11];
     println!("{}, {}", hello, word);
@@ -15,7 +16,7 @@ pub fn slice_type() {
     字符串切片的边界必须位于有效的UTF-8字符边界内，尝试从一个多字节字符的中间位置创建字符串切片会导致运行时错误
      */
     let first_space = first_word(&str);
-    //str.clear(); 借用规则，当我们拥有某个变量的不可变引用时，我们就无法读取该变量的可变引用
+    //str.clear(); //借用规则，当我们拥有某个变量的不可变引用时，我们就无法读取该变量的可变引用
     println!("{}", first_space);
 
     println!("{}", first_word_better("rust hello"));
