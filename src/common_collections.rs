@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::mem::uninitialized;
 
 //动态数组 vector
 //字符串 string
@@ -104,9 +105,18 @@ pub fn string() {
     let s1 = String::from("hello");
     let s2 = String::from("word");
     let s3 = format!("{}-{}", s1, s2);
-    println!("{}-{}-{}", s1, s2, s3)
+    println!("{}-{}-{}", s1, s2, s3);
 
     //rust不允许我们通过索引来获取String中的字符
+
+    let hello = "你好";
+    for b in hello.as_bytes() {
+        println!("{}", b);
+    };
+
+    for c in hello.chars() {
+        println!("{}", c);
+    }
 }
 
 pub fn hashmap() {
@@ -165,4 +175,23 @@ pub fn hashmap() {
         *count += 1;
     };
     println!("{:?}", text_count);
+
+    let mut goods_tags = HashMap::new();
+    let goods_tag = GoodsTag {
+        id: 12345,
+        tag: String::from("fruit"),
+    };
+
+    goods_tags.insert("apple", &goods_tag);
+    goods_tags.insert("banana", &goods_tag);
+
+    for (key, value) in goods_tags {
+        println!("{}:{:?}", key, value);
+    }
+}
+
+#[derive(Debug)]
+struct GoodsTag {
+    id: i32,
+    tag: String,
 }
