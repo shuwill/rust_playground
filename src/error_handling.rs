@@ -56,7 +56,7 @@ pub fn error_handling() {
     //失败时触发 panic的快捷方式：unwrap和expect
     let f = File::open("hello.txt").unwrap();
     let mut f = File::open("hello.txt").expect("File open hello.txt error");
-    let mut f = OpenOptions::new().append(true).open("hello.txt").expect("");
+    let mut f = OpenOptions::new().write(true).open("hello.txt").expect("");
     f.write("hello rust".as_bytes());
 
     let username = read_username_from_file();

@@ -11,6 +11,15 @@ pub fn generic_type() {
         Err(err) => println!("{}", err),
     }
 
+    let s1 = String::from("123");
+    let s2 = String::from("234");
+    let vec = vec![&s1, &s2];
+    match largest(&vec) {
+        Ok(value) => println!("The largest value of vec is {}.", value),
+        Err(err) => println!("{}", err),
+    }
+    println!("{},{}", s1, s2);
+
     let int = Point { x: 123, y: 321 };
     let float = Point { x: 12.3, y: 32.1 };
 

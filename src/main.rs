@@ -1,7 +1,11 @@
+use std::{env, fs, process};
+use std::error::Error;
+
 use crate::basic::{control_flow, println_int, statement_expression, sum, variables};
 use crate::common_collections::{hashmap, string, vector};
 use crate::enums_pattern_matching::{enums, pattern_match};
 use crate::error_handling::error_handling;
+use crate::example::random_access_source::{FileRandomAccessSouce, RandomAccessSource};
 use crate::generic_type::generic_type;
 use crate::guessing_game::guess_game::guessing_number;
 use crate::lifetimes::lifetimes;
@@ -12,6 +16,7 @@ use crate::references_borrowing::references_borrowing;
 use crate::slice_type::slice_type;
 use crate::struct_example::calculate_area;
 use crate::structs::{init_user, tuple_struct, user_demo};
+use rust_playground::{Config, run};
 
 mod guessing_game;
 mod basic;
@@ -27,8 +32,9 @@ mod generic_type;
 mod r#trait;
 mod lifetimes;
 
-fn main() {
+mod example;
 
+fn basic_program() {
     //guessing_number();
 
     variables();
@@ -60,5 +66,18 @@ fn main() {
     trait_practice();
 
     lifetimes();
-
 }
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    let config = Config::new(&args).unwrap_or_else(|error| {
+        println!("Proble parsing arguments: {}.", error);
+        process::exit(1);
+    });
+
+    if let Err(err) = run(config) {
+        println!("Application error: {}.", err);
+        process::exit(1);
+    }
+}
+
