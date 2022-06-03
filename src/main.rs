@@ -33,6 +33,7 @@ mod r#trait;
 mod lifetimes;
 
 mod example;
+mod closures_iterators;
 
 fn basic_program() {
     //guessing_number();
@@ -69,14 +70,13 @@ fn basic_program() {
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let config = Config::new(&args).unwrap_or_else(|error| {
-        println!("Proble parsing arguments: {}.", error);
+    let config = Config::new(env::args()).unwrap_or_else(|error| {
+        eprintln!("Proble parsing arguments: {}.", error);
         process::exit(1);
     });
 
     if let Err(err) = run(config) {
-        println!("Application error: {}.", err);
+        eprintln!("Application error: {}.", err);
         process::exit(1);
     }
 }
