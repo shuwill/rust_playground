@@ -34,6 +34,7 @@ mod lifetimes;
 
 mod example;
 mod closures_iterators;
+mod smart_pointers;
 
 fn basic_program() {
     //guessing_number();
