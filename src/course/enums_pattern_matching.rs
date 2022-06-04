@@ -1,6 +1,6 @@
 //枚举与模式匹配
 
-use crate::enums_pattern_matching::Message::Move;
+use crate::course::enums_pattern_matching::Message::Move;
 
 pub fn enums() {
     //枚举值
