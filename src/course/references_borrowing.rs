@@ -79,3 +79,24 @@ fn swap(mut x: String, mut y: String) -> (String, String) {
 1、在任何一段给定的时间里，你要么只能拥有一个不可变引用，要么只能拥有任意数量的不可变引用
 2、引用总是有效的
  */
+
+fn strtok<'a>(str: &'a mut &str, delimiter: char) -> &'a str {
+    if let Some(i) = str.find(delimiter) {
+        let prefix = &str[..i];
+        *str = &str[(i + delimiter.len_utf8())..];
+        return prefix;
+    } else {
+
+        ""
+    }
+}
+
+#[test]
+fn strtok_test() {
+    let mut str = "hello world";
+
+    let hello = strtok(&mut str, ' ');
+    assert_eq!(hello, "hello");
+
+    assert_eq!("world", str);
+}
